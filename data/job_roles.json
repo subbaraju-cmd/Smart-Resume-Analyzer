@@ -1,0 +1,60 @@
+{
+    "Data Analyst": [
+        "SQL",
+        "Python",
+        "Excel",
+        "Power BI",
+        "Tableau",
+        "Statistics",
+        "Pandas",
+        "Data Visualization"
+    ],
+    "Web Developer": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React",
+        "Node.js",
+        "Git",
+        "REST API",
+        "Bootstrap"
+    ],
+    "AI Engineer": [
+        "Python",
+        "Machine Learning",
+        "Deep Learning",
+        "TensorFlow",
+        "PyTorch",
+        "Scikit-learn",
+        "NLP",
+        "Computer Vision"
+    ],
+    "Cloud Engineer": [
+        "AWS",
+        "Azure",
+        "Docker",
+        "Kubernetes",
+        "Linux",
+        "Terraform",
+        "CI/CD",
+        "Git"
+    ],
+    "Python Developer": [
+        "Python",
+        "Django",
+        "Flask",
+        "SQL",
+        "Git",
+        "REST API",
+        "Docker"
+    ],
+    "Data Scientist": [
+        "Python",
+        "Machine Learning",
+        "Pandas",
+        "NumPy",
+        "SQL",
+        "Statistics",
+        "Scikit-learn"
+    ]
+}

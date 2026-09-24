@@ -1,0 +1,91 @@
+<!-- Component: 5 Key Metrics Overview -->
+<div class="metrics-grid">
+
+    <!-- Metric 1: Role Match -->
+    <div class="metric-card">
+        <span class="metric-label">Role Match</span>
+        <div class="metric-value-row">
+            <span class="metric-val {% if analysis.ats_score >= 70 %}color-success{% elif analysis.ats_score >= 40 %}color-warning{% else %}color-danger{% endif %}">
+                {{ analysis.ats_score }}%
+            </span>
+            <span class="metric-sub">keyword match</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill {% if analysis.ats_score >= 70 %}bg-success{% elif analysis.ats_score >= 40 %}bg-warning{% else %}bg-danger{% endif %}" style="width: {{ analysis.ats_score }}%;"></div>
+        </div>
+        <span class="metric-status-badge {% if analysis.ats_score >= 70 %}badge-success{% elif analysis.ats_score >= 40 %}badge-warning{% else %}badge-danger{% endif %}">
+            Threshold: 70% min
+        </span>
+    </div>
+
+    <!-- Metric 2: Resume Score -->
+    <div class="metric-card">
+        <span class="metric-label">Resume Score</span>
+        <div class="metric-value-row">
+            <span class="metric-val color-indigo">
+                {{ analysis.score }}
+            </span>
+            <span class="metric-sub">/ 100</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill bg-indigo" style="width: {{ analysis.score }}%;"></div>
+        </div>
+        <span class="metric-status-badge badge-indigo">
+            {{ analysis.metrics.sections_present }}/{{ analysis.metrics.total_sections }} Sections Verified
+        </span>
+    </div>
+
+    <!-- Metric 3: Keywords Found -->
+    <div class="metric-card">
+        <span class="metric-label">Keywords Found</span>
+        <div class="metric-value-row">
+            <span class="metric-val" style="color: var(--slate-900);">
+                {{ analysis.matched_skills|length }}
+            </span>
+            <span class="metric-sub">/ {{ (analysis.matched_skills|length) + (analysis.missing_skills|length) }} required</span>
+        </div>
+        <div class="progress-track">
+            {% set total_req = (analysis.matched_skills|length) + (analysis.missing_skills|length) %}
+            {% set fill_pct = (analysis.matched_skills|length / total_req * 100) if total_req > 0 else 0 %}
+            <div class="progress-fill bg-success" style="width: {{ fill_pct }}%;"></div>
+        </div>
+        <span class="metric-status-badge {% if analysis.missing_skills|length == 0 %}badge-success{% else %}badge-warning{% endif %}">
+            {{ analysis.missing_skills|length }} Missing Technology Keyword{% if analysis.missing_skills|length != 1 %}s{% endif %}
+        </span>
+    </div>
+
+    <!-- Metric 4: Action Verbs & Impact -->
+    <div class="metric-card">
+        <span class="metric-label">Action Verbs & Impact</span>
+        <div class="metric-value-row">
+            <span class="metric-val" style="color: var(--slate-900);">
+                {{ analysis.metrics.action_verbs_count }}
+            </span>
+            <span class="metric-sub">action verbs</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill bg-indigo" style="width: {{ [analysis.metrics.action_verbs_count * 12, 100]|min }}%;"></div>
+        </div>
+        <span class="metric-status-badge {% if analysis.metrics.action_verbs_count >= 5 %}badge-success{% else %}badge-warning{% endif %}">
+            {{ analysis.metrics.quant_metrics_count }} Measurable Metric{% if analysis.metrics.quant_metrics_count != 1 %}s{% endif %}
+        </span>
+    </div>
+
+    <!-- Metric 5: Word Count -->
+    <div class="metric-card">
+        <span class="metric-label">Word Count</span>
+        <div class="metric-value-row">
+            <span class="metric-val" style="color: var(--slate-900);">
+                {{ analysis.metrics.word_count }}
+            </span>
+            <span class="metric-sub">words</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill bg-indigo" style="width: {{ [analysis.metrics.word_count / 7.5, 100]|min }}%;"></div>
+        </div>
+        <span class="metric-status-badge {% if analysis.metrics.word_count >= 350 and analysis.metrics.word_count <= 800 %}badge-success{% else %}badge-warning{% endif %}">
+            Target: 350 - 750 words
+        </span>
+    </div>
+
+</div>

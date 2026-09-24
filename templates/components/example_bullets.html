@@ -1,0 +1,42 @@
+<!-- Component: Example Bullet Points & Other Roles Match -->
+<div class="panel">
+    <div class="panel-header">
+        <h2 class="panel-title">Example Bullet Points for Missing Skills</h2>
+        <span class="panel-tag">Examples</span>
+    </div>
+
+    {% if analysis.tailored_examples %}
+        <p style="font-size: 13.5px; color: var(--slate-600); margin-bottom: 14px;">
+            To add missing keywords for <strong>{{ job_role }}</strong>, incorporate these production-grade bullet points into your projects or experience:
+        </p>
+        {% for item in analysis.tailored_examples %}
+            <div class="example-card">
+                <span class="example-skill-badge">{{ item.skill }}</span>
+                <div class="example-text">{{ item.example }}</div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="example-card">
+            <span class="example-skill-badge">Role Alignment</span>
+            <div class="example-text">All primary keywords for {{ job_role }} are recognized. Ensure each skill is tied to quantitative outcomes and system metrics.</div>
+        </div>
+    {% endif %}
+
+    <!-- Other Job Roles Match -->
+    <div style="margin-top: 22px;">
+        <div class="panel-header" style="padding-bottom: 8px; margin-bottom: 14px;">
+            <h3 style="font-size: 13px; font-weight: 700; color: var(--slate-600); text-transform: uppercase;">Other Job Roles Match</h3>
+        </div>
+        {% for role, data in analysis.role_comparisons.items() %}
+        <div class="role-row">
+            <div class="role-labels">
+                <span>{{ role }} {% if role == job_role %}<strong style="color: var(--indigo-600);">(Selected)</strong>{% endif %}</span>
+                <span>{{ data.percentage }}%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill {% if data.percentage >= 70 %}bg-success{% elif data.percentage >= 40 %}bg-warning{% else %}bg-indigo{% endif %}" style="width: {{ data.percentage }}%;"></div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

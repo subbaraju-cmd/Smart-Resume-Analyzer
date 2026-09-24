@@ -1,0 +1,36 @@
+/* Print and PDF Export Stylesheet */
+@media print {
+    body {
+        background: #ffffff !important;
+        padding: 0 !important;
+        color: #0f172a !important;
+    }
+
+    .container {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 10px !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .panel, .metric-card, .executive-header {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        page-break-inside: avoid;
+    }
+
+    .executive-header {
+        background: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .progress-fill, .chip-match, .chip-gap, .rec-item, .role-tag {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}

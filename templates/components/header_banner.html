@@ -1,0 +1,27 @@
+<!-- Component: Executive Header Banner -->
+<div class="executive-header">
+    <div class="header-meta">
+        <h1>Resume Analysis Report</h1>
+        <div class="meta-line">
+            <span class="meta-item">Document: <strong>{{ filename }}</strong></span>
+            <span class="meta-item">Target Profile: <span class="role-tag">{{ job_role }}</span></span>
+            <span class="meta-item">Match Status: 
+                {% if analysis.ats_score >= 70 %}
+                    <strong class="color-success">Pass (Shortlist Ready)</strong>
+                {% elif analysis.ats_score >= 40 %}
+                    <strong class="color-warning">Review (Borderline Keyword Density)</strong>
+                {% else %}
+                    <strong class="color-danger">Deficit (Below Filtration Threshold)</strong>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    <div class="header-actions no-print">
+        <button class="btn-download" onclick="downloadReportPDF('{{ filename }}')">
+            Download Analysis PDF
+        </button>
+        <a href="/" class="btn-secondary">
+            Audit Another Resume
+        </a>
+    </div>
+</div>

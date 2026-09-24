@@ -1,0 +1,58 @@
+<!-- Component: Section & Contact Check Panel -->
+<div class="panel">
+    <div class="panel-header">
+        <h2 class="panel-title">Section & Contact Check</h2>
+        <span class="panel-tag">Checklist</span>
+    </div>
+
+    <table class="audit-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Details</th>
+                <th style="text-align: right;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Email Address</td>
+                <td>{{ analysis.email_value if analysis.email_found else "Not detected" }}</td>
+                <td class="status-cell {% if analysis.email_found %}status-verified{% else %}status-unindexed{% endif %}">
+                    {{ "[VERIFIED]" if analysis.email_found else "[MISSING]" }}
+                </td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td>{{ analysis.phone_value if analysis.phone_found else "Not detected" }}</td>
+                <td class="status-cell {% if analysis.phone_found %}status-verified{% else %}status-unindexed{% endif %}">
+                    {{ "[VERIFIED]" if analysis.phone_found else "[MISSING]" }}
+                </td>
+            </tr>
+            <tr>
+                <td>LinkedIn Profile</td>
+                <td>{{ "Identified in text" if analysis.linkedin_found else "Not detected" }}</td>
+                <td class="status-cell {% if analysis.linkedin_found %}status-verified{% else %}status-unindexed{% endif %}">
+                    {{ "[VERIFIED]" if analysis.linkedin_found else "[UNINDEXED]" }}
+                </td>
+            </tr>
+            <tr>
+                <td>GitHub Portfolio</td>
+                <td>{{ "Identified in text" if analysis.github_found else "Not detected" }}</td>
+                <td class="status-cell {% if analysis.github_found %}status-verified{% else %}status-unindexed{% endif %}">
+                    {{ "[VERIFIED]" if analysis.github_found else "[UNINDEXED]" }}
+                </td>
+            </tr>
+            {% for section, found in analysis.sections.items() %}
+                {% if section != "Contact Information" %}
+                <tr>
+                    <td>{{ section }} Section</td>
+                    <td>Standard Header: {{ section }}</td>
+                    <td class="status-cell {% if found %}status-verified{% else %}status-unindexed{% endif %}">
+                        {{ "[VERIFIED]" if found else "[UNINDEXED]" }}
+                    </td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

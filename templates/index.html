@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Resume Analyzer | ATS Compatibility Screening Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --slate-950: #020617;
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --slate-500: #64748b;
+            --slate-300: #cbd5e1;
+            --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            --indigo-600: #4f46e5;
+            --indigo-700: #4338ca;
+            --indigo-50: #eef2ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: var(--slate-900);
+            color: var(--slate-700);
+            padding: 60px 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid var(--slate-200);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            padding: 48px;
+        }
+
+        .header-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--indigo-600);
+            background: var(--indigo-50);
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--slate-950);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .lead-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--slate-600);
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 26px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid var(--slate-300);
+            border-radius: 10px;
+            background: var(--slate-50);
+            color: var(--slate-900);
+            font-size: 15px;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.15s ease-in-out;
+        }
+
+        .form-select:focus {
+            border-color: var(--indigo-600);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+        }
+
+        .upload-zone {
+            border: 2px dashed var(--slate-300);
+            border-radius: 12px;
+            padding: 44px 24px;
+            background: var(--slate-50);
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease-in-out;
+            display: block;
+        }
+
+        .upload-zone:hover {
+            border-color: var(--indigo-600);
+            background: #f8fafc;
+        }
+
+        .upload-zone-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--slate-800);
+            margin-bottom: 6px;
+        }
+
+        .upload-zone-desc {
+            font-size: 13px;
+            color: var(--slate-500);
+        }
+
+        .file-status {
+            margin-top: 14px;
+            padding: 10px 14px;
+            background: var(--indigo-50);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--indigo-700);
+            display: none;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            background: var(--indigo-600);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s ease, transform 0.1s ease;
+        }
+
+        .btn-submit:hover {
+            background: var(--indigo-700);
+            transform: translateY(-1px);
+        }
+
+        .supported-notes {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 13px;
+            color: var(--slate-500);
+            font-weight: 500;
+        }
+
+        .supported-notes span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+
+        <div class="card">
+            <span class="header-tag">ATS Screening Engine</span>
+            <h1>Smart Resume Analyzer</h1>
+            <p class="lead-text">
+                Deterministic ATS compatibility auditing system. Evaluates resume text extraction, section taxonomy, contact syntax, and role-specific keyword density against industry recruitment specifications.
+            </p>
+
+            {% if error %}
+            <div style="background: #fee2e2; border: 1px solid #fecdd3; color: #991b1b; padding: 14px 18px; border-radius: 8px; margin-bottom: 24px; font-size: 14px; font-weight: 600; line-height: 1.5;">
+                [Notice] {{ error }}
+            </div>
+            {% endif %}
+
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label for="job_role" class="form-label">
+                        1. Target Position Specification
+                    </label>
+                    <select id="job_role" name="job_role" class="form-select" required>
+                        <option value="" disabled selected>-- Select Target Profile --</option>
+                        {% for role in job_roles %}
+                            <option value="{{ role }}">{{ role }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        2. Document Ingestion
+                    </label>
+                    <label for="resume" class="upload-zone" id="uploadZone">
+                        <div class="upload-zone-title" id="uploadTitle">
+                            Select Document to Upload
+                        </div>
+                        <div class="upload-zone-desc" id="uploadDesc">
+                            Accepted formats: PDF (.pdf), Microsoft Word (.docx). Ensure text is selectable.
+                        </div>
+                        <div class="file-status" id="fileStatus"></div>
+                    </label>
+                    <input
+                        type="file"
+                        id="resume"
+                        name="resume"
+                        accept=".pdf,.docx"
+                        required
+                        onchange="onFileSelected(this)"
+                    >
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Execute ATS Compliance Audit
+                </button>
+
+            </form>
+
+            <div class="supported-notes">
+                <span>[PDF & DOCX Support]</span>
+                <span>[Regex Keyword Isolation]</span>
+                <span>[Exportable Audit PDF]</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/static/js/upload_handler.js"></script>
+
+</body>
+</html>

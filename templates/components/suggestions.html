@@ -1,0 +1,44 @@
+<!-- Component: Improvement Suggestions Panel -->
+<div class="panel">
+    <div class="panel-header">
+        <h2 class="panel-title">Improvement Suggestions</h2>
+        <span class="panel-tag">Feedback</span>
+    </div>
+
+    <ul class="rec-list">
+        {% for rec in analysis.role_recommendations %}
+            <li class="rec-item rec-item-role">
+                <span class="rec-prefix">KEYWORD</span>
+                <span>{{ rec }}</span>
+            </li>
+        {% endfor %}
+
+        {% for rec in analysis.structural_recommendations %}
+            <li class="rec-item rec-item-structural">
+                <span class="rec-prefix">SECTION</span>
+                <span>{{ rec }}</span>
+            </li>
+        {% endfor %}
+
+        {% for rec in analysis.impact_recommendations %}
+            <li class="rec-item rec-item-impact">
+                <span class="rec-prefix">ACTION VERB</span>
+                <span>{{ rec }}</span>
+            </li>
+        {% endfor %}
+
+        {% for rec in analysis.formatting_recommendations %}
+            <li class="rec-item rec-item-formatting">
+                <span class="rec-prefix">FORMATTING</span>
+                <span>{{ rec }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="guide-box">
+        <h4>Google Formula for Bullet Points</h4>
+        <p>Format accomplishment bullet points using explicit metrics to satisfy recruiter screening criteria:</p>
+        <span class="code-snippet">Accomplished [X], as measured by [Y], by doing [Z]</span>
+        <p style="font-size: 12px; color: var(--slate-500); margin: 0;">Example: "Decreased ETL query latency by 42% [Y] across 1.2M records [X] by implementing PostgreSQL indexing and Redis caching [Z]."</p>
+    </div>
+</div>

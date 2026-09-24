@@ -1,0 +1,51 @@
+<!-- Component: ATS Keyword Match Panel -->
+<div class="panel">
+    <div class="panel-header">
+        <h2 class="panel-title">ATS Keyword Match</h2>
+        <span class="panel-tag">{{ job_role }}</span>
+    </div>
+
+    <div class="chip-group">
+        <div class="chip-group-label">
+            <span>Matched Keywords</span>
+            <span class="color-success">{{ analysis.matched_skills|length }} Found</span>
+        </div>
+        {% if analysis.matched_skills %}
+            <div class="chip-container">
+                {% for skill in analysis.matched_skills %}
+                    <span class="chip chip-match">[MATCH] {{ skill }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p style="font-size: 13px; color: var(--slate-500); font-style: italic;">No required keywords for {{ job_role }} detected in document.</p>
+        {% endif %}
+    </div>
+
+    <div class="chip-group">
+        <div class="chip-group-label">
+            <span>Missing Keywords</span>
+            <span class="color-danger">{{ analysis.missing_skills|length }} Missing</span>
+        </div>
+        {% if analysis.missing_skills %}
+            <div class="chip-container">
+                {% for skill in analysis.missing_skills %}
+                    <span class="chip chip-gap">[GAP] {{ skill }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            <span class="chip chip-match">All required keywords identified. Complete technical alignment.</span>
+        {% endif %}
+    </div>
+
+    <div>
+        <div class="chip-group-label">
+            <span>All Detected Skills</span>
+            <span>{{ analysis.detected_skills|length }} Total</span>
+        </div>
+        <div class="chip-container">
+            {% for skill in analysis.detected_skills %}
+                <span class="chip chip-neutral">{{ skill }}</span>
+            {% endfor %}
+        </div>
+    </div>
+</div>

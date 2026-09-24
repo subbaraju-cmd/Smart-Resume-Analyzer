@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis Report: {{ filename }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/print.css" media="print">
+    <!-- html2pdf.js for vector client-side PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="/static/js/pdf_export.js"></script>
+</head>
+
+<body>
+
+    <div class="container" id="reportContainer">
+
+        <!-- Header Banner Component -->
+        {% include "components/header_banner.html" %}
+
+        <!-- 5 Key Metrics Overview Component -->
+        {% include "components/metrics_overview.html" %}
+
+        <!-- Row 1: Keyword Match & Section Check -->
+        <div class="layout-two-col">
+            {% include "components/keyword_match.html" %}
+            {% include "components/section_check.html" %}
+        </div>
+
+        <!-- Row 2: Improvement Suggestions & Example Bullet Points -->
+        <div class="layout-two-col">
+            {% include "components/suggestions.html" %}
+            {% include "components/example_bullets.html" %}
+        </div>
+
+        <!-- Row 3: Weak vs Strong Bullet Points & Action Verbs -->
+        <div class="layout-two-col">
+            {% include "components/weak_vs_strong.html" %}
+            {% include "components/action_verbs.html" %}
+        </div>
+
+        <!-- Row 4: Resume Section Guide -->
+        <div class="layout-full">
+            {% include "components/section_guide.html" %}
+        </div>
+
+        <!-- Collapsible Extracted Resume Text -->
+        {% include "components/extracted_text.html" %}
+
+    </div>
+
+</body>
+</html>
