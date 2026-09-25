@@ -1,5 +1,10 @@
 # Smart Resume Analyzer | ATS Compatibility Screening Engine
 
+# 🚀 Deployment Link
+**Live Application URL:** **[https://smart-resume-analyzer-utj7.onrender.com](https://smart-resume-analyzer-utj7.onrender.com)**
+
+---
+
 An industry-grade, deterministic, keyword-based **Applicant Tracking System (ATS) Resume Analyzer** built with Python Flask. Evaluates resumes against target role keywords, checks section architecture, identifies skill gaps, and provides actionable suggestions with one-click PDF audit report export.
 
 ---

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deployment Link - Smart Resume Analyzer</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16mm 18mm;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    
+    /* Top Header Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 12px;
+    }
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e3a8a;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      border: 1px solid #86efac;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #16a34a;
+      border-radius: 50%;
+    }
+
+    /* Main Big Heading Section */
+    .hero-section {
+      text-align: center;
+      margin: 18px 0 16px 0;
+    }
+    .project-subtitle {
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+    .big-heading {
+      font-size: 34px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+    .big-heading span {
+      background: linear-gradient(135deg, #1d4ed8, #4338ca);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .lead-text {
+      font-size: 14px;
+      color: #475569;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* Hero Link Card */
+    .link-hero-card {
+      background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+      border: 2px solid #3b82f6;
+      border-radius: 14px;
+      padding: 20px 22px;
+      text-align: center;
+      box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15);
+      margin-bottom: 18px;
+    }
+    .link-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #1d4ed8;
+      margin-bottom: 8px;
+    }
+    .link-url-box {
+      background: #ffffff;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: inline-block;
+      width: 100%;
+      word-break: break-all;
+    }
+    .link-url-box a {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1d4ed8;
+      text-decoration: none;
+      letter-spacing: 0.2px;
+    }
+    .link-url-box a:hover {
+      text-decoration: underline;
+    }
+    .link-subtext {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    /* Details Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .info-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+    .card-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #1e293b;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 6px;
+    }
+    .meta-list {
+      list-style: none;
+      font-size: 12px;
+      color: #334155;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .meta-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .meta-key {
+      font-weight: 600;
+      color: #64748b;
+      white-space: nowrap;
+    }
+    .meta-val {
+      font-weight: 700;
+      color: #0f172a;
+      text-align: right;
+      word-break: break-all;
+    }
+    .meta-val a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    /* Highlights Section */
+    .features-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 16px;
+      font-size: 12px;
+      color: #334155;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .check-icon {
+      color: #16a34a;
+      font-weight: 900;
+      font-size: 13px;
+      line-height: 1;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1.5px solid #e2e8f0;
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #64748b;
+    }
+    .footer-left strong {
+      color: #1e293b;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Bar -->
+  <div class="top-bar">
+    <div class="brand-title">Smart Resume Analyzer &bull; Capstone Project</div>
+    <div class="badge-live">
+      <span class="pulse-dot"></span>
+      <span>LIVE &amp; OPERATIONAL</span>
+    </div>
+  </div>
+
+  <!-- Hero Title Section -->
+  <div class="hero-section">
+    <div class="project-subtitle">Cloud Production Deployment</div>
+    <h1 class="big-heading"><span>DEPLOYMENT LINK</span></h1>
+    <p class="lead-text">
+      The Smart Resume Analyzer ATS Screening Engine is deployed live on Render Cloud. Access the fully operational web application via the public URL below.
+    </p>
+  </div>
+
+  <!-- Hero Link Card -->
+  <div class="link-hero-card">
+    <div class="link-label">Official Live Render Web Application URL</div>
+    <div class="link-url-box">
+      <a href="https://smart-resume-analyzer-utj7.onrender.com" target="_blank" rel="noopener noreferrer">
+        https://smart-resume-analyzer-utj7.onrender.com
+      </a>
+    </div>
+    <div class="link-subtext">
+      🔒 HTTPS Secured &bull; Free Cloud Tier &bull; Auto-Scaling Gunicorn WSGI Web Service
+    </div>
+  </div>
+
+  <!-- Details Grid -->
+  <div class="grid-2">
+    <!-- Deployment Specs -->
+    <div class="info-card">
+      <div class="card-title">
+        <span>⚙️ Deployment Architecture</span>
+      </div>
+      <ul class="meta-list">
+        <li>
+          <span class="meta-key">Cloud Host:</span>
+          <span class="meta-val">Render Cloud Platform</span>
+        </li>
+        <li>
+          <span class="meta-key">Application Server:</span>
+          <span class="meta-val">Python 3.14 / Flask 3.1</span>
+        </li>
+        <li>
+          <span class="meta-key">WSGI Production:</span>
+          <span class="meta-val">Gunicorn 23.0.0</span>
+        </li>
+        <li>
+          <span class="meta-key">Start Command:</span>
+          <span class="meta-val">gunicorn app:app</span>
+        </li>
+        <li>
+          <span class="meta-key">CI/CD Pipeline:</span>
+          <span class="meta-val">Auto Deploy on Git Push</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Repository & Project Meta -->
+    <div class="info-card">
+      <div class="card-title">
+        <span>📦 Project Information</span>
+      </div>
+      <ul class="meta-list">
+        <li>
+          <span class="meta-key">Author / Developer:</span>
+          <span class="meta-val">subbaraju-cmd</span>
+        </li>
+        <li>
+          <span class="meta-key">GitHub Repo:</span>
+          <span class="meta-val"><a href="https://github.com/subbaraju-cmd/Smart-Resume-Analyzer" target="_blank">Smart-Resume-Analyzer</a></span>
+        </li>
+        <li>
+          <span class="meta-key">Target Branch:</span>
+          <span class="meta-val">main</span>
+        </li>
+        <li>
+          <span class="meta-key">Configuration:</span>
+          <span class="meta-val">render.yaml &amp; Procfile</span>
+        </li>
+        <li>
+          <span class="meta-key">Local Dev Port:</span>
+          <span class="meta-val">http://127.0.0.1:5000</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Verified Live Features -->
+  <div class="features-card">
+    <div class="card-title">
+      <span>✅ Verified Live Capabilities on Production Server</span>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item">
+        <span class="check-icon">&#10004;</span>
+        <span><strong>Multi-Format Parsing:</strong> Clean document text extraction for PDF and DOCX files.</span>
+      </div>
+      <div class="feature-item">
+        <span class="check-icon">&#10004;</span>
+        <span><strong>Keyword Screening:</strong> 6 Engineering roles with strict boundary matching.</span>
+      </div>
+      <div class="feature-item">
+        <span class="check-icon">&#10004;</span>
+        <span><strong>Realistic ATS Scoring:</strong> Guardrail caps preventing false-positive score inflation.</span>
+      </div>
+      <div class="feature-item">
+        <span class="check-icon">&#10004;</span>
+        <span><strong>Vector PDF Export:</strong> One-click downloadable ATS analysis report.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-left">
+      <strong>Smart Resume Analyzer</strong> &bull; Developed by <strong>subbaraju-cmd</strong>
+    </div>
+    <div class="footer-right">
+      September 2026 &bull; Verified Deployment Document
+    </div>
+  </div>
+
+</body>
+</html>

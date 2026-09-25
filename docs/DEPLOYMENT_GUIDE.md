@@ -37,7 +37,7 @@ Fill in the configuration fields:
 1. Click **Create Web Service**.
 2. Render will automatically pull the repository, install dependencies from `requirements.txt`, and start the app with Gunicorn.
 3. Once the build completes, your live deployment link will be displayed at the top:
-   `https://smart-resume-analyzer-xxxx.onrender.com`
+   `https://smart-resume-analyzer-utj7.onrender.com`
 
 ---
 
